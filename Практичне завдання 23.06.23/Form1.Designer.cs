@@ -43,13 +43,13 @@
             this.OlympicsDataGridView.MultiSelect = false;
             this.OlympicsDataGridView.Name = "OlympicsDataGridView";
             this.OlympicsDataGridView.ReadOnly = true;
-            this.OlympicsDataGridView.Size = new System.Drawing.Size(767, 287);
+            this.OlympicsDataGridView.Size = new System.Drawing.Size(992, 287);
             this.OlympicsDataGridView.TabIndex = 0;
             // 
             // ChangeButton
             // 
             this.ChangeButton.Enabled = false;
-            this.ChangeButton.Location = new System.Drawing.Point(704, 332);
+            this.ChangeButton.Location = new System.Drawing.Point(929, 332);
             this.ChangeButton.Name = "ChangeButton";
             this.ChangeButton.Size = new System.Drawing.Size(75, 42);
             this.ChangeButton.TabIndex = 1;
@@ -68,17 +68,16 @@
             "Olympics Info",
             "Kind of Sports and Athletes",
             "Olympics Overall Information"});
-            this.OptionsComboBox.Location = new System.Drawing.Point(609, 305);
+            this.OptionsComboBox.Location = new System.Drawing.Point(834, 305);
             this.OptionsComboBox.Name = "OptionsComboBox";
             this.OptionsComboBox.Size = new System.Drawing.Size(170, 21);
             this.OptionsComboBox.TabIndex = 2;
-            this.OptionsComboBox.Text = "Select an option to change";
             this.OptionsComboBox.Visible = false;
             this.OptionsComboBox.SelectedIndexChanged += new System.EventHandler(this.OptionsComboBox_SelectedIndexChanged);
             // 
             // EditorModeButton
             // 
-            this.EditorModeButton.Location = new System.Drawing.Point(623, 396);
+            this.EditorModeButton.Location = new System.Drawing.Point(848, 396);
             this.EditorModeButton.Name = "EditorModeButton";
             this.EditorModeButton.Size = new System.Drawing.Size(75, 42);
             this.EditorModeButton.TabIndex = 3;
@@ -89,7 +88,7 @@
             // EditorModeExitButton
             // 
             this.EditorModeExitButton.Enabled = false;
-            this.EditorModeExitButton.Location = new System.Drawing.Point(704, 396);
+            this.EditorModeExitButton.Location = new System.Drawing.Point(929, 396);
             this.EditorModeExitButton.Name = "EditorModeExitButton";
             this.EditorModeExitButton.Size = new System.Drawing.Size(75, 42);
             this.EditorModeExitButton.TabIndex = 4;
@@ -101,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(791, 450);
+            this.ClientSize = new System.Drawing.Size(1016, 450);
             this.Controls.Add(this.EditorModeExitButton);
             this.Controls.Add(this.EditorModeButton);
             this.Controls.Add(this.OptionsComboBox);

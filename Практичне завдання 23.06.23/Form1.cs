@@ -27,7 +27,7 @@ namespace Практичне_завдання_23._06._23
             dt = new DataTable();
             adapter = new SqlDataAdapter();
 
-            adapter.SelectCommand = new SqlCommand(@"select A.Id, A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
+            adapter.SelectCommand = new SqlCommand(@"select A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
                                                      A.SilverMedal as [Silver Medals], A.BronzeMedal as [Bronze Medals], KS.Name as [Kind of Sport], KS.NumberOfParticipants as [Number of Patricipants],
                                                      OI.Season, OI.HostCountryName as [Host Country], OI.HostCityName as [Host City], OI.Year
                                                      from Athletes as A, KindOfSports as KS, OlympicsInfo as OI, KindOfSportsAndAthletes as KSA, OlympicsOverallInfo as OOI
@@ -68,6 +68,7 @@ namespace Практичне_завдання_23._06._23
             }
 
             reader?.Close();
+            cmd.Dispose();
         }
         private void SaveChanges(string tableName)
         {
@@ -96,23 +97,44 @@ namespace Практичне_завдання_23._06._23
                         }
                         else if(tableName == "KindOfSports")
                         {
-                            cmd = new SqlCommand("",conn);
+                            cmd = new SqlCommand(@"insert into KindOfSports(Id, Name, NumberOfParticipants)
+                                                   values(@id, @name, @numberOfParticipants)", conn);
 
-                            cmd.Parameters.Add("");
+                            cmd.Parameters.Add("@id",SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@name",SqlDbType.VarChar).Value = changedRow["Name"];
+                            cmd.Parameters.Add("@numberOfParticipants", SqlDbType.VarChar).Value = changedRow["NumberOfParticipants"];
                         }
                         else if (tableName == "OlympicsInfo")
                         {
-                            cmd = new SqlCommand("", conn);
+                            cmd = new SqlCommand(@"insert into OlympicsInfo(Id, Season, HostCountryName, HostCityName, Year)
+                                                   values(@id, @season, @hostCountryName, @hosyCityName, @year)", conn);
+
+                            cmd.Parameters.Add("@id",SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@season",SqlDbType.VarChar).Value = changedRow["Season"];
+                            cmd.Parameters.Add("@hostCountryName", SqlDbType.VarChar).Value = changedRow["HostCountryName"];
+                            cmd.Parameters.Add("@hosyCityName", SqlDbType.VarChar).Value = changedRow["HostCityName"];
+                            cmd.Parameters.Add("@year", SqlDbType.Int).Value = changedRow["Year"];
 
                         }
                         else if (tableName == "KindOfSportsAndAthletes")
                         {
-                            cmd = new SqlCommand("", conn);
+                            cmd = new SqlCommand(@"insert into KindOfSportsAndAthletes(Id, KindOfSportId, AthleteId, Result)
+                                                   values(@id, @kindOfSportId, @athleteId, @result)", conn);
+
+                            cmd.Parameters.Add("@id",SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@kindOfSportId", SqlDbType.Int).Value = changedRow["KindOfSportId"];
+                            cmd.Parameters.Add("@athleteId", SqlDbType.Int).Value = changedRow["AthleteId"];
+                            cmd.Parameters.Add("@result", SqlDbType.Float).Value = changedRow["Result"];
 
                         }
                         else if (tableName == "OlympicsOverallInfo")
                         {
-                            cmd = new SqlCommand("", conn);
+                            cmd = new SqlCommand(@"insert into OlympicsOverallInfo(Id, OlympicsInfoId, KindOfSportAndAthleteId)
+                                                   values(@id, @olympicsInfoId, @kindOfSportAndAthleteId)", conn);
+
+                            cmd.Parameters.Add("@id",SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@olympicsInfoId", SqlDbType.Int).Value = changedRow["OlympicsInfoId"];
+                            cmd.Parameters.Add("@kindOfSportAndAthleteId", SqlDbType.Int).Value = changedRow["KindOfSportAndAthleteId"];
 
                         }
                     }
@@ -141,31 +163,75 @@ namespace Практичне_завдання_23._06._23
                         }
                         else if (tableName == "KindOfSports")
                         {
+                            cmd = new SqlCommand(@"update KindOfSports set Name = @name, NumberOfParticipants = @numberOfParticipants
+                                                   where Id = @id", conn);
 
+                            cmd.Parameters.Add("@id", SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = changedRow["Name"];
+                            cmd.Parameters.Add("@numberOfParticipants", SqlDbType.Int).Value = changedRow["NumberOfParticipants"];
                         }
                         else if (tableName == "OlympicsInfo")
                         {
+                            cmd = new SqlCommand(@"update OlympicsInfo set Season = @season, HostCountryName = @hostCountryName, HostCityName = @hostCityName,
+                                                   Year = @year
+                                                   where Id = @id", conn);
 
+                            cmd.Parameters.Add("@id", SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@season", SqlDbType.VarChar).Value = changedRow["Season"];
+                            cmd.Parameters.Add("@hostCountryName", SqlDbType.VarChar).Value = changedRow["HostCountryName"];
+                            cmd.Parameters.Add("@hostCityName", SqlDbType.VarChar).Value = changedRow["HostCityName"];
+                            cmd.Parameters.Add("@year", SqlDbType.Int).Value = changedRow["Year"];
                         }
                         else if (tableName == "KindOfSportsAndAthletes")
                         {
+                            cmd = new SqlCommand(@"update KindOfSportsAndAthletes set KindOfSportId = @kindOfSportId, AthleteId = @athleteId,
+                                                   Result = @result
+                                                   where Id = @id", conn);
 
+                            cmd.Parameters.Add("@id", SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@kindOfSportId", SqlDbType.Int).Value = changedRow["KindOfSportId"];
+                            cmd.Parameters.Add("@athleteId", SqlDbType.Int).Value = changedRow["AthleteId"];
+                            cmd.Parameters.Add("@result", SqlDbType.Int).Value = changedRow["Result"];
                         }
                         else if (tableName == "OlympicsOverallInfo")
                         {
+                            cmd = new SqlCommand(@"update OlympicsOverallInfo set OlympicsInfoId = @olympicsInfoId, KindOfSportAndAthleteId = @kindOfSportAndAthleteId,
+                                                   where Id = @id", conn);
 
+                            cmd.Parameters.Add("@id", SqlDbType.Int).Value = changedRow["Id"];
+                            cmd.Parameters.Add("@olympicsInfoId", SqlDbType.Int).Value = changedRow["OlympicsInfoId"];
+                            cmd.Parameters.Add("@kindOfSportAndAthleteId", SqlDbType.Int).Value = changedRow["KindOfSportAndAthleteId"];
                         }
                     }
                 }
 
                 cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
         }
 
 
         private void ChangeButton_Click(object sender, EventArgs e)
         {
-            SaveChanges("Athletes");
+            switch (OptionsComboBox.SelectedIndex)
+            {
+                case 0:
+                    SaveChanges("Athletes");
+                    break;
+                case 1:
+                    SaveChanges("KindOfSports");
+                    break;
+                case 2:
+                    SaveChanges("OlympicsInfo");
+                    break;
+                case 3:
+                    SaveChanges("KindOfSportsAndAthletes");
+                    break;
+                case 4:
+                    SaveChanges("OlympicsOverallInfo");
+                    break;
+            }
+
         }
 
         private void EditorModeButton_Click(object sender, EventArgs e)
@@ -174,6 +240,7 @@ namespace Практичне_завдання_23._06._23
 
             ChangeButton.Visible = true;
             OptionsComboBox.Visible = true;
+            OptionsComboBox.Text = "Select an option to change!";
             EditorModeButton.Enabled = false;
             EditorModeExitButton.Enabled = true;
             OlympicsDataGridView.ReadOnly = false;
@@ -214,12 +281,12 @@ namespace Практичне_завдання_23._06._23
             EditorModeExitButton.Enabled = false;
             OlympicsDataGridView.ReadOnly = true;
 
-            ReaderQuery(@"select A.Id, A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
-                                   A.SilverMedal as [Silver Medals], A.BronzeMedal as [Bronze Medals], KS.Name as [Kind of Sport], KS.NumberOfParticipants as [Number of Patricipants],
-                                   OI.Season, OI.HostCountryName as [Host Country], OI.HostCityName as [Host City], OI.Year
-                                   from Athletes as A, KindOfSports as KS, OlympicsInfo as OI, KindOfSportsAndAthletes as KSA, OlympicsOverallInfo as OOI
-                                   where A.Id = KSA.AthleteId and KS.Id = KSA.KindOfSportId and OI.Id = OOI.OlympicsInfoId and KSA.Id = OOI.KindOfSportAndAthleteId
-                                   order by A.Id");
+            ReaderQuery(@"select A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
+                          A.SilverMedal as [Silver Medals], A.BronzeMedal as [Bronze Medals], KSA.Result, KS.Name as [Kind of Sport], KS.NumberOfParticipants as [Number of Patricipants],
+                          OI.Season, OI.HostCountryName as [Host Country], OI.HostCityName as [Host City], OI.Year
+                          from Athletes as A, KindOfSports as KS, OlympicsInfo as OI, KindOfSportsAndAthletes as KSA, OlympicsOverallInfo as OOI
+                          where A.Id = KSA.AthleteId and KS.Id = KSA.KindOfSportId and OI.Id = OOI.OlympicsInfoId and KSA.Id = OOI.KindOfSportAndAthleteId
+                          order by A.Id");
             OlympicsDataGridView.DataSource = dt;
 
             conn?.Close();
