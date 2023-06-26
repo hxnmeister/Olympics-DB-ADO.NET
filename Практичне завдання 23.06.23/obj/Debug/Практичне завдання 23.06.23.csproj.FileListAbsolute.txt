@@ -1,0 +1,11 @@
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\bin\Debug\Практичне завдання 23.06.23.exe.config
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\bin\Debug\Практичне завдання 23.06.23.exe
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\bin\Debug\Практичне завдання 23.06.23.pdb
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.csproj.AssemblyReference.cache
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.csproj.SuggestedBindingRedirects.cache
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне_завдання_23._06._23.Form1.resources
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне_завдання_23._06._23.Properties.Resources.resources
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.csproj.GenerateResource.cache
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.csproj.CoreCompileInputs.cache
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.exe
+D:\GitHubDesktop\PracticalWork_23.06.23\Практичне завдання 23.06.23\obj\Debug\Практичне завдання 23.06.23.pdb
