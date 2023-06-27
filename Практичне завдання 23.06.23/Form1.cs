@@ -8,15 +8,15 @@ namespace Практичне_завдання_23._06._23
 {
     public partial class Form1 : Form
     {
-        string fillDataGridView = @"select A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
+        DataTable dataTable = null;
+        SqlCommand command = null;
+        readonly string fillDataGridView = @"select A.Name, A.Surname, A.Patronymic, A.Country as [Origin Country], A.BirthDate as [Birth Date], A.GoldMedal as [Gold Medals],
                            A.SilverMedal as [Silver Medals], A.BronzeMedal as [Bronze Medals], KS.Name as [Kind of Sport], KS.NumberOfParticipants as [Number of Patricipants],
                            OI.Season, OI.HostCountryName as [Host Country], OI.HostCityName as [Host City], OI.Year
                            from Athletes as A, KindOfSports as KS, OlympicsInfo as OI, KindOfSportsAndAthletes as KSA, OlympicsOverallInfo as OOI
                            where A.Id = KSA.AthleteId and KS.Id = KSA.KindOfSportId and OI.Id = OOI.OlympicsInfoId and KSA.Id = OOI.KindOfSportAndAthleteId";
-        DataTable dataTable = null;
-        SqlCommand command = null;
-        SqlConnection connection = null;
-        SqlDataAdapter adapter = null;
+        readonly SqlConnection connection = null;
+        readonly SqlDataAdapter adapter = null;
 
         public Form1()
         {
